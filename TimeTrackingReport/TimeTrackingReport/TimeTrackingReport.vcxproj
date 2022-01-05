@@ -141,12 +141,14 @@
   <ItemGroup>
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="InfoManager.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="TimeTrackingReport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Employee.h" />
     <ClInclude Include="InfoManager.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

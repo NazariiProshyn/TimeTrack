@@ -46,6 +46,16 @@ void InfoManager::ReadInformation()
 			<<"\nCan't find file with name: " << fileName <<'\n';
 	}
 
+	std::string smth = "";
+	getline(fin, smth, '\n');
+	std::transform(smth.begin(), smth.end(), smth.begin(), tolower);
+	smth.erase(
+		std::remove(smth.begin(), smth.end(), ' '),	smth.end());
+	std::cout << smth<<'\n';
+
+	getline(fin, smth, '\n');
+	std::cout << smth;
+
 
 }
 

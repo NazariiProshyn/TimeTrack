@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include "Employee.h"
+#include "Parser.h"
 
 class InfoManager final
 {
@@ -17,5 +18,6 @@ private:
 	std::ifstream fin;
 
 	std::vector<Employee> employees;
+	Parser parser;
 };
 

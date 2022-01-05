@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "Time.h"
 
 class Employee final
@@ -9,5 +10,6 @@ public:
 	~Employee() = default;
 private:
 	std::string name = "";
+	std::vector<Time> workHours;
 };
 
