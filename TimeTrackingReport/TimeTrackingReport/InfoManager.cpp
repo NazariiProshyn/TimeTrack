@@ -19,6 +19,11 @@ namespace NSFilesProperties
 }
 
 
+InfoManager::InfoManager()
+{
+	fin.exceptions(std::ifstream::badbit | std::ifstream::failbit);
+}
+
 void InfoManager::SetFileName()
 {
 	std::cout << "Input name of file: ";
@@ -28,7 +33,18 @@ void InfoManager::SetFileName()
 void InfoManager::ReadInformation()
 {
 	LeadToTheStandard();
-	std::cout << "Check the file: " << fileName;
+	std::cout << "Check the file: " << fileName << '\n';
+
+	try
+	{
+		fin.open(fileName);
+		std::cout << "File open\n";
+	}
+	catch (const std::ifstream::failure& ex)
+	{
+		std::cout << ex.what()
+			<<"\nCan't find file with name: " << fileName <<'\n';
+	}
 
 
 }
