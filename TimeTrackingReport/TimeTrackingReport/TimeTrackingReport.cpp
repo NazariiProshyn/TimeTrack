@@ -3,6 +3,7 @@
 int main()
 {
 	InfoManager manager;
-	manager.setFileName();
+	manager.SetFileName();
+	manager.ReadInformation();
 }
 

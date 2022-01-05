@@ -5,8 +5,10 @@ class InfoManager final
 public:
 	InfoManager()  = default;
 	~InfoManager() = default;
-	void setFileName();
+	void SetFileName();
+	void ReadInformation();
 private:
+	void LeadToTheStandard();
 	std::string fileName = "";
 };
 
