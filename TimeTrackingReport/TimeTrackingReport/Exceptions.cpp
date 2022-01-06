@@ -1,6 +1,6 @@
 #include "Exceptions.h"
 
-std::string Exceptions::getErrorMsg()
+std::string Exceptions::GetErrorMsg()
 {
     if (errWithFile)
     {

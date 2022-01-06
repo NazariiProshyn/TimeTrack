@@ -8,22 +8,24 @@ class Parser final
 public:
 	Parser()  = default;
 	~Parser() = default;
-	void SetColumnsNames(const std::string& info);
-	void parsInformation(const std::string& info);
-	int checkName();
-	int checkDay();
-	int checkHours();
-	bool checkFormatDate();
 
-	bool validateHours();
-	const std::string& getName() const { return values[name]; }
-	const int getHour() { return std::stoi(values[hours]); }
-	const std::string& getYear();
-	const std::string& getMonth();
+	void SetColumnsNames(const std::string& info);
+	void ParsInformation(const std::string& info);
+
+	int  CheckName();
+	int  CheckDay();
+	int  CheckHours();
+	bool CheckFormatDate();
+	bool ValidateHours();
+
+	const std::string& GetName() const { return values[name]; }
+	const int getHour() const { return std::stoi(values[hours]); }
+	const std::string& GetYear()  const;
+	const std::string& GetMonth() const;
 private:
-	bool checkSign(char sign);
-	bool validateMonth();
-	bool validateDay();
+	bool CheckSign(char sign) const;
+	bool ValidateMonth() const;
+	bool ValidateDay() const;
 
 	std::string parsingString = "";
 	std::string infoString    = "";

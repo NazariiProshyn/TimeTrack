@@ -14,11 +14,11 @@ public:
 	void WriteInformation();
 private:
 	void LeadToTheStandard();
-	void checkFileRequirements();
-	void manageEmployees();
+	void CheckFileRequirements();
+	void ManageEmployees();
 
 	std::string readString = "";
-	std::string fileName = "";
+	std::string fileName   = "";
 	std::string resultFileName = "result";
 	std::ifstream fin;
 	std::ofstream fout;

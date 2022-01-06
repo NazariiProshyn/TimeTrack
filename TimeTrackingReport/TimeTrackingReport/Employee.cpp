@@ -4,40 +4,40 @@ namespace NSSigns
 {
 	const char newLine = '\n';
 	const char newItem = ';';
-	const char space    = ' ';
+	const char space   = ' ';
 } 
 
 Employee::Employee(const std::string& info, const std::string& year, const std::string& month, int hour)
 {
 	name = info; 
-	addInformation(year,month,hour);
+	AddInformation(year,month,hour);
 }
 
-const std::string& Employee::getAllTime()
+const std::string& Employee::GetAllTime() 
 {
 	for (size_t i = 0; i < workHours.size(); i++)
 	{
 		result += name;
 		result += NSSigns::newItem;
-		result += workHours[i].getMonth();
+		result += workHours[i].GetMonth();
 		result += NSSigns::space;
-		result += workHours[i].getYear();
+		result += workHours[i].GetYear();
 		result += NSSigns::newItem;
-		result += std::to_string(workHours[i].getTime());
+		result += std::to_string(workHours[i].GetTime());
 		result += NSSigns::newLine;
 	}
 	return result;
 }
 
-void Employee::addInformation(const std::string& year, const std::string& month, int hour)
+void Employee::AddInformation(const std::string& year, const std::string& month, int hour)
 {
 	bool newInformation = true;
 	for (size_t i = 0; i < workHours.size(); ++i)
 	{
-		if (year == workHours[i].getYear() &&
-			month == workHours[i].getMonth())
+		if (year  == workHours[i].GetYear() &&
+			month == workHours[i].GetMonth())
 		{
-			workHours[i].addTime(hour);
+			workHours[i].AddTime(hour);
 			newInformation = false;
 		}
 	}

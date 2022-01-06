@@ -7,12 +7,12 @@ namespace NSConstants
 
 Time::Time(const std::string& year, const std::string& month, int hour)
 {
-	this->year = year;
+	this->year  = year;
 	this->month = month;
-	this->time = hour;
+	this->time  = hour;
 }
 
-void Time::addTime(int info)
+void Time::AddTime(int info)
 {
 	time += info;
 	if (time > NSConstants::hoursInDay)

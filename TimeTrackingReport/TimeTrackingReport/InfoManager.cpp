@@ -29,7 +29,7 @@ namespace NSMainColumns
 void InfoManager::SetFileName()
 {
 	std::cout << "Input name of file: ";
-	std::cin >> fileName;
+	std::cin  >> fileName;
 }
 
 void InfoManager::ReadInformation()
@@ -39,7 +39,7 @@ void InfoManager::ReadInformation()
 
 	std::cout << "Check the file: " << fileName << '\n';////////////
 	fin.open(fileName);
-	checkFileRequirements();
+	CheckFileRequirements();
 
 	fin.close();
 }
@@ -57,12 +57,12 @@ void InfoManager::WriteInformation()
 	}
 	catch (Exceptions& ex)
 	{
-		std::cout << ex.getErrorMsg();
+		std::cout << ex.GetErrorMsg();
 	}
 	
 	for (size_t i = 0; i < employees.size(); ++i)
 	{
-		fout << employees[i].getAllTime();
+		fout << employees[i].GetAllTime();
 	}
 	fout.close();
 }
@@ -82,7 +82,7 @@ void InfoManager::LeadToTheStandard()
 	
 }
 
-void InfoManager::checkFileRequirements()
+void InfoManager::CheckFileRequirements()
 {
 	try
 	{
@@ -95,59 +95,60 @@ void InfoManager::checkFileRequirements()
 		getline(fin, readString, '\n');
 		parser.SetColumnsNames(readString);
 
-		if (parser.checkName() < NSFilesProperties::minNumOfColumn)
+		if (parser.CheckName() < NSFilesProperties::minNumOfColumn)
 		{
 			throw Exceptions(fileName, NSMainColumns::name);
 		}
-		if (parser.checkHours() < NSFilesProperties::minNumOfColumn)
+		if (parser.CheckHours() < NSFilesProperties::minNumOfColumn)
 		{
 			throw Exceptions(fileName, NSMainColumns::hour);
 		}
-		if (parser.checkDay() < NSFilesProperties::minNumOfColumn)
+		if (parser.CheckDay() < NSFilesProperties::minNumOfColumn)
 		{
 			throw Exceptions(fileName, NSMainColumns::day);
 		}
+
 		while (!fin.eof())
 		{
 			getline(fin, readString, '\n');
 
 			if (readString != "")
 			{
-				parser.parsInformation(readString);
-				if (!parser.checkFormatDate())
+				parser.ParsInformation(readString);
+				if (!parser.CheckFormatDate())
 				{
 					throw Exceptions(fileName, NSMainColumns::day);
 				}
-				if (!parser.validateHours())
+				if (!parser.ValidateHours())
 				{
 					throw Exceptions(fileName, NSMainColumns::hour);
 				}
-				manageEmployees();
+				ManageEmployees();
 			}
 		}
 	}
 	catch (Exceptions& ex)
 	{
-		std::cout << ex.getErrorMsg();
+		std::cout << ex.GetErrorMsg();
 	}
 }
 
-void InfoManager::manageEmployees()
+void InfoManager::ManageEmployees()
 {
 	bool newEmployee = true;
 	for (size_t i = 0; i < employees.size(); ++i)
 	{
-		if (parser.getName() == employees[i].getName())
+		if (parser.GetName() == employees[i].GetName())
 		{
-			employees[i].addInformation(parser.getYear(), parser.getMonth(), parser.getHour());
+			employees[i].AddInformation(parser.GetYear(), parser.GetMonth(), parser.getHour());
 			newEmployee = false;
 		}
 	}
 	if (newEmployee)
 	{
-		std::cout << parser.getName() << '\n';
-		employees.push_back(Employee(parser.getName(), parser.getYear(),
-			parser.getMonth(), parser.getHour()));
+		std::cout << parser.GetName() << '\n';
+		employees.push_back(Employee(parser.GetName(), parser.GetYear(),
+			parser.GetMonth(), parser.getHour()));
 	}
 
 }

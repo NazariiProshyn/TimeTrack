@@ -19,14 +19,16 @@ namespace NSParserProperties
 
 namespace NSMontsConstants
 {
-
 	const char dateSign = '-';
-	const size_t year = 0;
+
+	const size_t year  = 0;
 	const size_t month = 1;
-	const size_t day = 2;
+	const size_t day   = 2;
 	const size_t dateSize = 3;
+
 	const size_t minNumOfMonthAndDay = 1;
 	const size_t maxNumOfMonth = 12;
+
 	const std::vector<int> daysInMonth =
 	{
 		0,
@@ -71,7 +73,7 @@ void Parser::SetColumnsNames(const std::string& info)
 	
 	for (size_t i = 0; i < infoString.size(); ++i)
 	{
-		if (checkSign(infoString[i]))
+		if (CheckSign(infoString[i]))
 		{
 			columns.push_back(parsingString);
 			parsingString.clear();
@@ -81,23 +83,15 @@ void Parser::SetColumnsNames(const std::string& info)
 			parsingString += infoString[i];
 		}
 	}
-
-
-	//std::cout << '\n';
-	//for (size_t i = 0; i < columns.size(); ++i)
-	//{
-	//	std::cout << columns[i];
-	//}
-	//std::cout << '\n';
 }
 
-void Parser::parsInformation(const std::string& info)
+void Parser::ParsInformation(const std::string& info)
 {
 	infoString = info + ';';
 	values.clear();
 	for (size_t i = 0; i < infoString.size(); ++i)
 	{
-		if (checkSign(infoString[i]))
+		if (CheckSign(infoString[i]))
 		{
 			values.push_back(parsingString);
 			parsingString.clear();
@@ -107,19 +101,9 @@ void Parser::parsInformation(const std::string& info)
 			parsingString += infoString[i];
 		}
 	}
-	//std::cout << values[name] << ' ';
-	//std::cout << values[day] << ' ';
-	//std::cout << values[hours] << ' ';
-	//std::cout << '\n';
-/*
-	for (size_t i = 0; i < columns.size(); ++i)
-	{
-		std::cout << values[i] << ' ';
-	}
-	std::cout <<'\n';*/
 }
 
-int Parser::checkName()
+int Parser::CheckName()
 {
 	for (size_t i = 0; i < columns.size(); ++i)
 	{
@@ -131,7 +115,7 @@ int Parser::checkName()
 	return name;
 }
 
-int Parser::checkDay()
+int Parser::CheckDay()
 {
 	for (size_t i = 0; i < columns.size(); ++i)
 	{
@@ -143,7 +127,7 @@ int Parser::checkDay()
 	return day;
 }
 
-int Parser::checkHours()
+int Parser::CheckHours()
 {
 	for (size_t i = 0; i < columns.size(); ++i)
 	{
@@ -155,7 +139,7 @@ int Parser::checkHours()
 	return hours;
 }
 
-bool Parser::checkFormatDate()
+bool Parser::CheckFormatDate()
 {
 	parsDate.clear();
 	values[day] += NSMontsConstants::dateSign;
@@ -177,10 +161,26 @@ bool Parser::checkFormatDate()
 		return false;
 	}
 	
-	return (validateMonth() && validateDay());
+	return (ValidateMonth() && ValidateDay());
 }
 
-bool Parser::validateHours()
+bool Parser::ValidateMonth() const
+{
+	return (std::stoi(parsDate[NSMontsConstants::month]) >=
+		NSMontsConstants::minNumOfMonthAndDay) &&
+		(std::stoi(parsDate[NSMontsConstants::month]) <=
+			NSMontsConstants::maxNumOfMonth);
+}
+
+bool Parser::ValidateDay() const
+{
+	return (std::stoi(parsDate[NSMontsConstants::day]) >=
+		NSMontsConstants::minNumOfMonthAndDay) &&
+		(std::stoi(parsDate[NSMontsConstants::day]) <=
+			NSMontsConstants::daysInMonth[std::stoi(parsDate[NSMontsConstants::month])]);
+}
+
+bool Parser::ValidateHours()
 {
 	return (std::stoi(values[hours]) >= 
 		NSParserProperties::minHours) &&
@@ -188,17 +188,17 @@ bool Parser::validateHours()
 		NSParserProperties::maxHours);
 }
 
-const std::string& Parser::getYear()
+const std::string& Parser::GetYear() const
 {
 	return parsDate[NSMontsConstants::year];
 }
 
-const std::string& Parser::getMonth()
+const std::string& Parser::GetMonth() const
 {
 	return NSMontsConstants::monthList.find(parsDate[1])->second;
 }
 
-bool Parser::checkSign(char sign)
+bool Parser::CheckSign(char sign) const
 {
 	for (size_t i = 0; i < NSParserProperties::signs.size(); ++i)
 	{
@@ -210,18 +210,3 @@ bool Parser::checkSign(char sign)
 	return false;
 }
 
-bool Parser::validateMonth()
-{
-	return (std::stoi(parsDate[NSMontsConstants::month]) >=
-		NSMontsConstants::minNumOfMonthAndDay) &&
-		(std::stoi(parsDate[NSMontsConstants::month]) <=
-		NSMontsConstants::maxNumOfMonth);
-}
-
-bool Parser::validateDay()
-{
-	return (std::stoi(parsDate[NSMontsConstants::day]) >=
-		NSMontsConstants::minNumOfMonthAndDay) &&
-		(std::stoi(parsDate[NSMontsConstants::day]) <=
-		NSMontsConstants::daysInMonth[std::stoi(parsDate[NSMontsConstants::month])]);
-}
