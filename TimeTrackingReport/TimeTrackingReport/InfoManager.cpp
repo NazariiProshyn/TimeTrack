@@ -21,7 +21,7 @@ namespace NSFilesProperties
 
 InfoManager::InfoManager()
 {
-	fin.exceptions(std::ifstream::badbit | std::ifstream::failbit);
+	//fin.exceptions(std::ifstream::badbit | std::ifstream::failbit);
 }
 
 void InfoManager::SetFileName()
@@ -39,22 +39,31 @@ void InfoManager::ReadInformation()
 	{
 		fin.open(fileName);
 		std::cout << "File open\n";
-	}
+
+		std::string smth = "";
+		getline(fin, smth, '\n');
+		parser.SetColumnsNames(smth);
+
+		while (!fin.eof())
+		{
+			getline(fin, smth, '\n');
+
+			if (smth != "")
+			{
+				std::cout << smth << '\n';
+			}
+			
+		}
+		fin.close();
+	 }
 	catch (const std::ifstream::failure& ex)
 	{
 		std::cout << ex.what()
 			<<"\nCan't find file with name: " << fileName <<'\n';
 	}
 
-	std::string smth = "";
-	getline(fin, smth, '\n');
-	std::transform(smth.begin(), smth.end(), smth.begin(), tolower);
-	smth.erase(
-		std::remove(smth.begin(), smth.end(), ' '),	smth.end());
-	std::cout << smth<<'\n';
 
-	getline(fin, smth, '\n');
-	std::cout << smth;
+
 
 
 }
