@@ -7,12 +7,13 @@
 class InfoManager final
 {
 public:
-	InfoManager();
+	InfoManager() = default;
 	~InfoManager() = default;
 	void SetFileName();
 	void ReadInformation();
 private:
 	void LeadToTheStandard();
+	void checkFileRequirements();
 
 	std::string fileName = "";
 	std::ifstream fin;

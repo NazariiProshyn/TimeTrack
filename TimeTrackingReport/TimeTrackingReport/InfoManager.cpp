@@ -1,4 +1,5 @@
 #include "InfoManager.h"
+#include "Exceptions.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -16,12 +17,13 @@ namespace NSFilesProperties
 		'|',
 		','
 	};
+	const int minNumOfColumn = 0;
 }
-
-
-InfoManager::InfoManager()
+namespace NSMainColumns
 {
-	//fin.exceptions(std::ifstream::badbit | std::ifstream::failbit);
+	const std::string name = "name";
+	const std::string day = "date";
+	const std::string hour = "loggedhours";
 }
 
 void InfoManager::SetFileName()
@@ -33,39 +35,8 @@ void InfoManager::SetFileName()
 void InfoManager::ReadInformation()
 {
 	LeadToTheStandard();
-	std::cout << "Check the file: " << fileName << '\n';
-
-	try
-	{
-		fin.open(fileName);
-		std::cout << "File open\n";
-
-		std::string smth = "";
-		getline(fin, smth, '\n');
-		parser.SetColumnsNames(smth);
-
-		while (!fin.eof())
-		{
-			getline(fin, smth, '\n');
-
-			if (smth != "")
-			{
-				std::cout << smth << '\n';
-			}
-			
-		}
-		fin.close();
-	 }
-	catch (const std::ifstream::failure& ex)
-	{
-		std::cout << ex.what()
-			<<"\nCan't find file with name: " << fileName <<'\n';
-	}
-
-
-
-
-
+	checkFileRequirements();
+	
 }
 
 void InfoManager::LeadToTheStandard()
@@ -81,4 +52,51 @@ void InfoManager::LeadToTheStandard()
 		fileName += NSFilesProperties::typeOfFile;
 	}
 	
+}
+
+void InfoManager::checkFileRequirements()
+{
+	try
+	{
+		std::cout << "Check the file: " << fileName << '\n';////////////
+		fin.open(fileName);
+		if (!fin.is_open())
+		{
+			throw Exceptions(fileName);
+		}
+		std::cout << "File open\n";//////////
+
+		std::string readString = "";
+		getline(fin, readString, '\n');
+		parser.SetColumnsNames(readString);
+
+		if (parser.checkName() < NSFilesProperties::minNumOfColumn)
+		{
+			throw Exceptions(fileName, NSMainColumns::name);
+		}
+		if (parser.checkHours() < NSFilesProperties::minNumOfColumn)
+		{
+			throw Exceptions(fileName, NSMainColumns::hour);
+		}
+		if (parser.checkDay() < NSFilesProperties::minNumOfColumn)
+		{
+			throw Exceptions(fileName, NSMainColumns::day);
+		}
+
+		while (!fin.eof())
+		{
+			getline(fin, readString, '\n');
+
+			if (readString != "")
+			{
+				std::cout << readString << '\n';
+			}
+
+		}
+		fin.close();
+	}
+	catch (Exceptions& ex)
+	{
+		std::cout << ex.getErrorMsg();
+	}
 }

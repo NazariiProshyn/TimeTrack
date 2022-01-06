@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Employee.cpp" />
+    <ClCompile Include="Exceptions.cpp" />
     <ClCompile Include="InfoManager.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Time.cpp" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Employee.h" />
+    <ClInclude Include="Exceptions.h" />
     <ClInclude Include="InfoManager.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="Time.h" />
