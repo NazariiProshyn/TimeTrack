@@ -36,7 +36,17 @@ void InfoManager::ReadInformation()
 {
 	LeadToTheStandard();
 	checkFileRequirements();
-	
+	while (!fin.eof())
+	{
+		getline(fin, readString, '\n');
+
+		if (readString != "")
+		{
+			parser.parsInformation(readString);
+		}
+
+	}
+	fin.close();
 }
 
 void InfoManager::LeadToTheStandard()
@@ -66,7 +76,6 @@ void InfoManager::checkFileRequirements()
 		}
 		std::cout << "File open\n";//////////
 
-		std::string readString = "";
 		getline(fin, readString, '\n');
 		parser.SetColumnsNames(readString);
 
@@ -82,18 +91,6 @@ void InfoManager::checkFileRequirements()
 		{
 			throw Exceptions(fileName, NSMainColumns::day);
 		}
-
-		while (!fin.eof())
-		{
-			getline(fin, readString, '\n');
-
-			if (readString != "")
-			{
-				std::cout << readString << '\n';
-			}
-
-		}
-		fin.close();
 	}
 	catch (Exceptions& ex)
 	{

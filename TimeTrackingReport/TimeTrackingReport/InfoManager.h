@@ -15,6 +15,7 @@ private:
 	void LeadToTheStandard();
 	void checkFileRequirements();
 
+	std::string readString = "";
 	std::string fileName = "";
 	std::ifstream fin;
 

@@ -45,6 +45,34 @@ void Parser::SetColumnsNames(const std::string& info)
 	//std::cout << '\n';
 }
 
+void Parser::parsInformation(const std::string& info)
+{
+	infoString = info + ';';
+	values.clear();
+	for (size_t i = 0; i < infoString.size(); ++i)
+	{
+		if (checkSign(infoString[i]))
+		{
+			values.push_back(parsingString);
+			parsingString.clear();
+		}
+		else
+		{
+			parsingString += infoString[i];
+		}
+	}
+	//std::cout << values[name] << ' ';
+	//std::cout << values[day] << ' ';
+	//std::cout << values[hours] << ' ';
+	//std::cout << '\n';
+/*
+	for (size_t i = 0; i < columns.size(); ++i)
+	{
+		std::cout << values[i] << ' ';
+	}
+	std::cout <<'\n';*/
+}
+
 int Parser::checkName()
 {
 	for (size_t i = 0; i < columns.size(); ++i)

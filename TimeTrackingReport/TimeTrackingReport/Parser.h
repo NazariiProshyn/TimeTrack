@@ -9,9 +9,11 @@ public:
 	Parser()  = default;
 	~Parser() = default;
 	void SetColumnsNames(const std::string& info);
+	void parsInformation(const std::string& info);
 	int checkName();
 	int checkDay();
 	int checkHours();
+	
 private:
 	bool checkSign(char sign);
 
