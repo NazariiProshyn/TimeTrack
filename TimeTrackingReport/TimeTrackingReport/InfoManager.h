@@ -3,11 +3,20 @@
 #include <fstream>
 #include "Employee.h"
 #include "Parser.h"
+#include "Logger.h"
+
+namespace NSLogger {
+	static const std::string path      = "Log.txt";
+	static const std::string openFile  = "File open: ";
+	static const std::string readInfo  = "Read information";
+	static const std::string writeInfo = "Write information";
+	static const std::string closeFile = "File close: ";
+}
 
 class InfoManager final
 {
 public:
-	InfoManager() = default;
+	InfoManager() : logger(NSLogger::path) {};
 	~InfoManager() = default;
 	void SetFileName();
 	void ReadInformation();
@@ -25,5 +34,5 @@ private:
 
 	std::vector<Employee> employees;
 	Parser parser;
+	Logger logger;
 };
-

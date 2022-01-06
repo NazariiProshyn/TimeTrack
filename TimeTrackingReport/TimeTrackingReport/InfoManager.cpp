@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+
 namespace NSFilesProperties
 {
 	const std::string typeOfFile = ".csv";
