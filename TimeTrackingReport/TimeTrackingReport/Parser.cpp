@@ -1,6 +1,7 @@
 #include "Parser.h"
 #include <algorithm>
 #include <iostream>
+#include <map>
 
 namespace NSParserProperties
 {
@@ -10,8 +11,53 @@ namespace NSParserProperties
 		';'
 	};
 	const std::string name = "name";
-	const std::string day  = "date";
+	const std::string date  = "date";
 	const std::string hour = "loggedhours";
+	const size_t minHours = 0;
+	const size_t maxHours = 24;
+}
+
+namespace NSMontsConstants
+{
+
+	const char dateSign = '-';
+	const size_t year = 0;
+	const size_t month = 1;
+	const size_t day = 2;
+	const size_t dateSize = 3;
+	const size_t minNumOfMonthAndDay = 1;
+	const size_t maxNumOfMonth = 12;
+	const std::vector<int> daysInMonth =
+	{
+		0,
+		31,
+		28,
+		31,
+		30,
+		31,
+		30,
+		31,
+		31,
+		30,
+		31,
+		30,
+		31
+	};
+	std::map<std::string, std::string> monthList =
+	{
+		{"1","January"},
+		{"2","February"},
+		{"3","March"},
+		{"4","April"},
+		{"5","May"},
+		{"6","June"},
+		{"7","July"},
+		{"8","August"},
+		{"9","September"},
+		{"10","October"},
+		{"11","November"},
+		{"12","December"}
+	};
 }
 
 void Parser::SetColumnsNames(const std::string& info)
@@ -89,7 +135,7 @@ int Parser::checkDay()
 {
 	for (size_t i = 0; i < columns.size(); ++i)
 	{
-		if (columns[i] == NSParserProperties::day)
+		if (columns[i] == NSParserProperties::date)
 		{
 			day = i;
 		}
@@ -109,6 +155,49 @@ int Parser::checkHours()
 	return hours;
 }
 
+bool Parser::checkFormatDate()
+{
+	parsDate.clear();
+	values[day] += NSMontsConstants::dateSign;
+	for (size_t i = 0; i < values[day].size(); ++i)
+	{
+		if (values[day][i] == NSMontsConstants::dateSign)
+		{
+			parsDate.push_back(parsingString);
+			parsingString.clear();
+		}
+		else
+		{
+			parsingString += values[day][i];
+		}
+	}
+
+	if (parsDate.size() != NSMontsConstants::dateSize)
+	{
+		return false;
+	}
+	
+	return (validateMonth() && validateDay());
+}
+
+bool Parser::validateHours()
+{
+	return (std::stoi(values[hours]) >= 
+		NSParserProperties::minHours) &&
+		(std::stoi(values[hours]) <=
+		NSParserProperties::maxHours);
+}
+
+const std::string& Parser::getYear()
+{
+	return values[NSMontsConstants::year];
+}
+
+const std::string& Parser::getMonth()
+{
+	return NSMontsConstants::monthList.find(parsDate[1])->second;
+}
+
 bool Parser::checkSign(char sign)
 {
 	for (size_t i = 0; i < NSParserProperties::signs.size(); ++i)
@@ -119,4 +208,20 @@ bool Parser::checkSign(char sign)
 		}
 	}
 	return false;
+}
+
+bool Parser::validateMonth()
+{
+	return (std::stoi(parsDate[NSMontsConstants::month]) >=
+		NSMontsConstants::minNumOfMonthAndDay) &&
+		(std::stoi(parsDate[NSMontsConstants::month]) <=
+		NSMontsConstants::maxNumOfMonth);
+}
+
+bool Parser::validateDay()
+{
+	return (std::stoi(parsDate[NSMontsConstants::day]) >=
+		NSMontsConstants::minNumOfMonthAndDay) &&
+		(std::stoi(parsDate[NSMontsConstants::day]) <=
+		NSMontsConstants::daysInMonth[std::stoi(parsDate[NSMontsConstants::month])]);
 }

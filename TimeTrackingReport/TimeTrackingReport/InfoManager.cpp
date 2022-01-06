@@ -34,18 +34,13 @@ void InfoManager::SetFileName()
 
 void InfoManager::ReadInformation()
 {
+
 	LeadToTheStandard();
+
+	std::cout << "Check the file: " << fileName << '\n';////////////
+	fin.open(fileName);
 	checkFileRequirements();
-	while (!fin.eof())
-	{
-		getline(fin, readString, '\n');
 
-		if (readString != "")
-		{
-			parser.parsInformation(readString);
-		}
-
-	}
 	fin.close();
 }
 
@@ -68,8 +63,6 @@ void InfoManager::checkFileRequirements()
 {
 	try
 	{
-		std::cout << "Check the file: " << fileName << '\n';////////////
-		fin.open(fileName);
 		if (!fin.is_open())
 		{
 			throw Exceptions(fileName);
@@ -91,9 +84,48 @@ void InfoManager::checkFileRequirements()
 		{
 			throw Exceptions(fileName, NSMainColumns::day);
 		}
+		while (!fin.eof())
+		{
+			getline(fin, readString, '\n');
+
+			if (readString != "")
+			{
+				parser.parsInformation(readString);
+				if (!parser.checkFormatDate())
+				{
+					throw Exceptions(fileName, NSMainColumns::day);
+				}
+				if (!parser.validateHours())
+				{
+					throw Exceptions(fileName, NSMainColumns::hour);
+				}
+				manageEmployees();
+			}
+
+		}
 	}
 	catch (Exceptions& ex)
 	{
 		std::cout << ex.getErrorMsg();
 	}
+}
+
+void InfoManager::manageEmployees()
+{
+	bool newEmployee = true;
+	for (size_t i = 0; i < employees.size(); ++i)
+	{
+		if (parser.getName() == employees[i].getName())
+		{
+			employees[i].addInformation(parser.getYear(), parser.getMonth(), parser.getHour());
+			newEmployee = false;
+		}
+	}
+	if (newEmployee)
+	{
+		std::cout << parser.getName() << '\n';
+		employees.push_back(Employee(parser.getName(), parser.getYear(),
+			parser.getMonth(), parser.getHour()));
+	}
+
 }

@@ -26,5 +26,5 @@ private:
     std::string path = "";
 
     const std::string errWithFileMsg  = "Unable to open or find file: ";
-    const std::string errWithValueMsg = " does not have a column: ";
+    const std::string errWithValueMsg = " does not have a column or have invalid data: ";
 };

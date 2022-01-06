@@ -14,6 +14,7 @@ public:
 private:
 	void LeadToTheStandard();
 	void checkFileRequirements();
+	void manageEmployees();
 
 	std::string readString = "";
 	std::string fileName = "";

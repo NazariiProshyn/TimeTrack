@@ -13,13 +13,22 @@ public:
 	int checkName();
 	int checkDay();
 	int checkHours();
-	
+	bool checkFormatDate();
+
+	bool validateHours();
+	const std::string& getName() const { return values[name]; }
+	const int getHour() { return std::stoi(values[hours]); }
+	const std::string& getYear();
+	const std::string& getMonth();
 private:
 	bool checkSign(char sign);
+	bool validateMonth();
+	bool validateDay();
 
 	std::string parsingString = "";
 	std::string infoString    = "";
 
+	std::vector<std::string> parsDate;
 	std::vector<std::string> columns;
 	std::vector<std::string> values;
 
