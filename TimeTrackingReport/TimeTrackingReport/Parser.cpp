@@ -190,7 +190,7 @@ bool Parser::validateHours()
 
 const std::string& Parser::getYear()
 {
-	return values[NSMontsConstants::year];
+	return parsDate[NSMontsConstants::year];
 }
 
 const std::string& Parser::getMonth()

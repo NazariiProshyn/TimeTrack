@@ -11,6 +11,7 @@ public:
 	~InfoManager() = default;
 	void SetFileName();
 	void ReadInformation();
+	void WriteInformation();
 private:
 	void LeadToTheStandard();
 	void checkFileRequirements();
@@ -18,7 +19,9 @@ private:
 
 	std::string readString = "";
 	std::string fileName = "";
+	std::string resultFileName = "result";
 	std::ifstream fin;
+	std::ofstream fout;
 
 	std::vector<Employee> employees;
 	Parser parser;
