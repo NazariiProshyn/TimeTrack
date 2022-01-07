@@ -1,0 +1,16 @@
+Fri Jan  7 05:38:46 2022
+File open: test.csv
+Fri Jan  7 05:38:46 2022
+Read information: Name
+Fri Jan  7 05:38:46 2022
+Read information: Total hours
+Fri Jan  7 05:38:46 2022
+Read information: Date
+Fri Jan  7 05:38:46 2022
+File close: test.csv
+Fri Jan  7 05:38:46 2022
+File open: test.csv
+Fri Jan  7 05:38:46 2022
+Write information: resulttest.csv
+Fri Jan  7 05:38:46 2022
+File close: resulttest.csv
