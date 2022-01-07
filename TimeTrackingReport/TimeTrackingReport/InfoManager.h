@@ -11,6 +11,7 @@ namespace NSLogger {
 	static const std::string readInfo  = "Read information";
 	static const std::string writeInfo = "Write information";
 	static const std::string closeFile = "File close: ";
+	static const std::string canRead   = "Can't read:";
 }
 
 class InfoManager final

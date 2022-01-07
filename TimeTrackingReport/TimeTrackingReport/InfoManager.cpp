@@ -22,9 +22,11 @@ namespace NSFilesProperties
 }
 namespace NSMainColumns
 {
-	const std::string name = "name";
-	const std::string day = "date";
-	const std::string hour = "loggedhours";
+	const std::string name = "Name";
+	const std::string day  = "Date";
+	const std::string hour = "Total hours";
+	const std::string tableHeader =
+		"Name;Date;Total hours\n";
 }
 
 void InfoManager::SetFileName()
@@ -60,7 +62,7 @@ void InfoManager::WriteInformation()
 	{
 		std::cout << ex.GetErrorMsg();
 	}
-	
+	fout << NSMainColumns::tableHeader;
 	for (size_t i = 0; i < employees.size(); ++i)
 	{
 		fout << employees[i].GetAllTime();
