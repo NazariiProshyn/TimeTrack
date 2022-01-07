@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file      InfoManager.h
+ *
+ * @brief     Structure to manage information
+ *
+ * @author    Proshyn Nazarii
+ * Contact:   nazariyproshyn@gmail.com
+ *
+ */
+
 #include <string>
 #include <fstream>
 #include "Employee.h"
@@ -20,12 +31,46 @@ class InfoManager final
 public:
 	InfoManager() : logger(NSLogger::path) {};
 	~InfoManager() = default;
+
+	/**
+	 * @brief	sets the path to the file
+	 *
+	*/
 	void SetFileName();
+
+	/**
+	 * @brief	read and format 
+	 *			information from a file
+	 *
+	*/
 	void ReadInformation();
+
+	/**
+	* @brief	write information to a file
+	*
+	*/
 	void WriteInformation();
 private:
+	/**
+	 * @brief	format information to
+	 *          standard that easy to handle
+	 *
+	*/
 	void LeadToTheStandard();
+
+	/**
+	 * @brief	checks the file 
+	 *          for major elements
+	 *			(in any order)
+	 *
+	*/
 	void CheckFileRequirements();
+
+	/**
+	 * @brief	Add new employee 
+	 *			or add information about
+	 *
+	*/
 	void ManageEmployees();
 
 	std::string readString = "";

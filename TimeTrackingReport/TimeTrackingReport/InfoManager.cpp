@@ -1,3 +1,13 @@
+/**
+ * @file      InfoManager.cpp
+ *
+ * @brief     Read,write and changes information
+ * 
+ * @author    Proshyn Nazarii
+ * Contact:   nazariyproshyn@gmail.com
+ *
+ */
+
 #include "InfoManager.h"
 #include "Exceptions.h"
 #include <iostream>
@@ -39,8 +49,6 @@ void InfoManager::ReadInformation()
 {
 
 	LeadToTheStandard();
-
-	std::cout << "Check the file: " << fileName << '\n';////////////
 	fin.open(fileName);
 	CheckFileRequirements();
 	fin.close();
@@ -164,7 +172,6 @@ void InfoManager::ManageEmployees()
 	}
 	if (newEmployee)
 	{
-		std::cout << parser.GetName() << '\n';
 		employees.push_back(Employee(parser.GetName(), parser.GetYear(),
 			parser.GetMonth(), parser.getHour()));
 	}

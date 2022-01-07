@@ -1,3 +1,14 @@
+/**
+ * @file      Logger.cpp
+ *
+ * @brief     Simple realization of
+ *            structure logger
+ *
+ * @author    Proshyn Nazarii
+ * Contact:   nazariyproshyn@gmail.com
+ *
+ */
+
 #include "Logger.h"
 #include <ctime>
 

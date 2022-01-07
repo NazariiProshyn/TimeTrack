@@ -1,3 +1,13 @@
+/**
+ * @file      InfoManager.cpp
+ *
+ * @brief     Parse and check information
+ *
+ * @author    Proshyn Nazarii
+ * Contact:   nazariyproshyn@gmail.com
+ *
+ */
+
 #include "Parser.h"
 #include <algorithm>
 #include <iostream>

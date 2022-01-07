@@ -1,3 +1,14 @@
+/**
+ * @file      Time.cpp
+ *
+ * @brief     Simple realization of
+ *            time handling structure
+ *
+ * @author    Proshyn Nazarii
+ * Contact:   nazariyproshyn@gmail.com
+ *
+ */
+
 #include "Time.h"
 
 namespace NSConstants

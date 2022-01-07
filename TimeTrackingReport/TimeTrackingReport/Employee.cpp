@@ -1,3 +1,14 @@
+/**
+ * @file      Employee.cpp
+ *
+ * @brief     Simple realization of
+ *            structure Employee
+ *
+ * @author    Proshyn Nazarii
+ * Contact:   nazariyproshyn@gmail.com
+ *
+ */
+
 #include "Employee.h"
 
 namespace NSSigns

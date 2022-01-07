@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file      Exceptions.h
+ *
+ * @brief     Simple structure exception
+ *
+ * @author    Proshyn Nazarii
+ * Contact:   nazariyproshyn@gmail.com
+ *
+ */
+
 #include <iostream>
 #include <string>
 #include <iostream>
@@ -19,6 +30,12 @@ public:
     };
     ~Exceptions() = default;
 
+    /**
+     * @brief	Returns information about
+     *          error.
+     *
+     * @return  Information about error.
+    */
     std::string GetErrorMsg();
 private:
     bool errWithFile = true;
