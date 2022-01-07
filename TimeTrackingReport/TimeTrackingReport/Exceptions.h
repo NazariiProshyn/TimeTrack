@@ -5,8 +5,6 @@
  *
  * @brief     Simple structure exception
  *
- * @author    Proshyn Nazarii
- * Contact:   nazariyproshyn@gmail.com
  *
  */
 

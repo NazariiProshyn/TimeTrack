@@ -4,8 +4,6 @@
  *
  * @brief     Structure to parse and check information
  *
- * @author    Proshyn Nazarii
- * Contact:   nazariyproshyn@gmail.com
  *
  */
 #include <map>

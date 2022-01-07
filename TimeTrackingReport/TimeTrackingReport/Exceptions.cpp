@@ -4,8 +4,6 @@
  * @brief     Simple realization of
  *            structure exception
  *
- * @author    Proshyn Nazarii
- * Contact:   nazariyproshyn@gmail.com
  *
  */
 

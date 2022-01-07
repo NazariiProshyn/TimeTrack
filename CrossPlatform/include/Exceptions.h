@@ -28,7 +28,6 @@ public:
         errValue = value;
         errWithFile = false;
     };
-    ~Exceptions() = default;
 
     /**
      * @brief	Returns information about

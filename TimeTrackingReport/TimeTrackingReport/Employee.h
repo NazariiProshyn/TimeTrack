@@ -5,8 +5,6 @@
  *
  * @brief     Simple structure of employee
  *
- * @author    Proshyn Nazarii
- * Contact:   nazariyproshyn@gmail.com
  *
  */
 

@@ -5,8 +5,6 @@
  *
  * @brief     Simple time handling structure
  *
- * @author    Proshyn Nazarii
- * Contact:   nazariyproshyn@gmail.com
  *
  */
 

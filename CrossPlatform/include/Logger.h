@@ -26,5 +26,5 @@ public:
 	void logMessage(const std::string& message);
 private:
 	std::string mFilePath;
-	std::ofstream fout;
+	std::wofstream fout;
 };

@@ -15,7 +15,7 @@ std::string Exceptions::GetErrorMsg()
 {
     if (errWithFile)
     {
-        return errWithFileMsg + path;
+        return errWithFileMsg + path + "\n";
     }
     return path + errWithValueMsg + errValue;
 }

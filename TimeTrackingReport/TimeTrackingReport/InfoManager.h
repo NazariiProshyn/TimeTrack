@@ -5,8 +5,6 @@
  *
  * @brief     Structure to manage information
  *
- * @author    Proshyn Nazarii
- * Contact:   nazariyproshyn@gmail.com
  *
  */
 

@@ -4,8 +4,6 @@
  * @brief     Simple realization of
  *            time handling structure
  *
- * @author    Proshyn Nazarii
- * Contact:   nazariyproshyn@gmail.com
  *
  */
 

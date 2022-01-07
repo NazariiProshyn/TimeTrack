@@ -5,8 +5,6 @@
  *
  * @brief     Simple logger structure
  *
- * @author    Proshyn Nazarii
- * Contact:   nazariyproshyn@gmail.com
  *
  */
 

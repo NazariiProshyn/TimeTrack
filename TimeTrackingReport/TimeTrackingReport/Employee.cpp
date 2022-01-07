@@ -4,8 +4,6 @@
  * @brief     Simple realization of
  *            structure Employee
  *
- * @author    Proshyn Nazarii
- * Contact:   nazariyproshyn@gmail.com
  *
  */
 

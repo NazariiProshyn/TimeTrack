@@ -3,8 +3,6 @@
  *
  * @brief     Read,write and changes information
  * 
- * @author    Proshyn Nazarii
- * Contact:   nazariyproshyn@gmail.com
  *
  */
 
