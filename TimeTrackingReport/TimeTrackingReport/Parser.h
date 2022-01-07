@@ -38,4 +38,3 @@ private:
 	int day   = -1;
 	int hours = -1;
 };
-

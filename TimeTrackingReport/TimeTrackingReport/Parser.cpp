@@ -209,4 +209,3 @@ bool Parser::CheckSign(char sign) const
 	}
 	return false;
 }
-

@@ -8,10 +8,11 @@
 namespace NSLogger {
 	static const std::string path      = "Log.txt";
 	static const std::string openFile  = "File open: ";
-	static const std::string readInfo  = "Read information";
-	static const std::string writeInfo = "Write information";
+	static const std::string readInfo  = "Read information: ";
+	static const std::string writeInfo = "Write information: ";
 	static const std::string closeFile = "File close: ";
-	static const std::string canRead   = "Can't read:";
+	static const std::string invalidD  = "Invalid data: ";
+	static const std::string cantOpen  = "Can't open file: ";
 }
 
 class InfoManager final

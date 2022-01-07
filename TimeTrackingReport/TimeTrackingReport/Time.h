@@ -19,4 +19,3 @@ private:
 	unsigned int time = 0;
 	
 };
-

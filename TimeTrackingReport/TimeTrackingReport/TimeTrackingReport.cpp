@@ -7,4 +7,3 @@ int main()
 	manager.ReadInformation();
 	manager.WriteInformation();
 }
-

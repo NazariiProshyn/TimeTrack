@@ -43,8 +43,8 @@ void InfoManager::ReadInformation()
 	std::cout << "Check the file: " << fileName << '\n';////////////
 	fin.open(fileName);
 	CheckFileRequirements();
-
 	fin.close();
+	logger.logMessage(NSLogger::closeFile + fileName);
 }
 
 void InfoManager::WriteInformation()
@@ -55,8 +55,10 @@ void InfoManager::WriteInformation()
 	{
 		if (!fout.is_open())
 		{
+			logger.logMessage(NSLogger::cantOpen + fileName);
 			throw Exceptions(resultFileName);
 		}
+		logger.logMessage(NSLogger::openFile + fileName);
 	}
 	catch (Exceptions& ex)
 	{
@@ -67,7 +69,9 @@ void InfoManager::WriteInformation()
 	{
 		fout << employees[i].GetAllTime();
 	}
+	logger.logMessage(NSLogger::writeInfo + resultFileName);
 	fout.close();
+	logger.logMessage(NSLogger::closeFile + resultFileName);
 }
 
 void InfoManager::LeadToTheStandard()
@@ -91,25 +95,34 @@ void InfoManager::CheckFileRequirements()
 	{
 		if (!fin.is_open())
 		{
+			logger.logMessage(NSLogger::cantOpen + fileName);
 			throw Exceptions(fileName);
 		}
-		std::cout << "File open\n";//////////
+		logger.logMessage(NSLogger::openFile + fileName);
 
 		getline(fin, readString, '\n');
 		parser.SetColumnsNames(readString);
 
 		if (parser.CheckName() < NSFilesProperties::minNumOfColumn)
 		{
+			logger.logMessage(NSLogger::invalidD + NSMainColumns::name);
 			throw Exceptions(fileName, NSMainColumns::name);
 		}
+		logger.logMessage(NSLogger::readInfo + NSMainColumns::name);
+
 		if (parser.CheckHours() < NSFilesProperties::minNumOfColumn)
 		{
+			logger.logMessage(NSLogger::invalidD + NSMainColumns::hour);
 			throw Exceptions(fileName, NSMainColumns::hour);
 		}
+		logger.logMessage(NSLogger::readInfo + NSMainColumns::hour);
+
 		if (parser.CheckDay() < NSFilesProperties::minNumOfColumn)
 		{
+			logger.logMessage(NSLogger::invalidD + NSMainColumns::day);
 			throw Exceptions(fileName, NSMainColumns::day);
 		}
+		logger.logMessage(NSLogger::readInfo + NSMainColumns::day);
 
 		while (!fin.eof())
 		{
@@ -120,10 +133,12 @@ void InfoManager::CheckFileRequirements()
 				parser.ParsInformation(readString);
 				if (!parser.CheckFormatDate())
 				{
+					logger.logMessage(NSLogger::invalidD + NSMainColumns::day);
 					throw Exceptions(fileName, NSMainColumns::day);
 				}
 				if (!parser.ValidateHours())
 				{
+					logger.logMessage(NSLogger::invalidD + NSMainColumns::hour);
 					throw Exceptions(fileName, NSMainColumns::hour);
 				}
 				ManageEmployees();
